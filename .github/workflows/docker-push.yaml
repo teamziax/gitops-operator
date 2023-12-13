@@ -30,7 +30,6 @@ jobs:
         VERSION: ${{ github.event.inputs.IMAGE_TAG }}
         IMAGE: ghcr.io/teamziax/gitops-operator/gitops-operator
       run: |
-        echo $VERSION
         make docker-build docker-push
         make bundle
         make bundle-build bundle-push

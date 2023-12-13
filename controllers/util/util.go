@@ -47,7 +47,7 @@ func GetClusterVersion(client client.Client) (string, error) {
 	err := client.Get(context.TODO(), types.NamespacedName{Name: clusterVersionName}, clusterVersion)
 	if err != nil {
 		if errors.IsNotFound(err) {
-			return "", nil
+			return "4.14.0-0.okd-2023-12-01-225814", nil
 		}
 		return "", err
 	}
