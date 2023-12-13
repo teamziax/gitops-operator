@@ -1,0 +1,39 @@
+name: image-publisher
+
+on:
+  workflow_dispatch:
+    inputs:
+      IMAGE_TAG:
+        required: true
+        default: latest
+
+jobs:
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - uses: actions/setup-go@v4
+      with:
+        go-version-file: go.mod
+
+    - uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push docker images
+      env:
+        VERSION: ${{ github.event.inputs.IMAGE_TAG }}
+        IMAGE: ghcr.io/teamziax/gitops-operator/gitops-operator
+        BUNDLE_IMG: ghcr.io/teamziax/gitops-operator/gitops-operator-bundle
+        CATALOG_IMG: ghcr.io/teamziax/gitops-operator/gitops-operator-catalog
+      run: |
+        make docker-build docker-push
+        make bundle
+        make bundle-build bundle-push
+        make opm
+        make catalog-build catalog-push
