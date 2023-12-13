@@ -32,6 +32,7 @@ jobs:
         BUNDLE_IMG: ghcr.io/teamziax/gitops-operator/gitops-operator-bundle
         CATALOG_IMG: ghcr.io/teamziax/gitops-operator/gitops-operator-catalog
       run: |
+        echo $VERSION
         make docker-build docker-push
         make bundle
         make bundle-build bundle-push
