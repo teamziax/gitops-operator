@@ -26,7 +26,11 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Install operator-sdk
-      run: brew install operator-sdk
+      run: |
+        git clone https://github.com/operator-framework/operator-sdk
+        cd operator-sdk
+        git checkout master
+        make install
 
     - name: Build and push docker images
       env:
