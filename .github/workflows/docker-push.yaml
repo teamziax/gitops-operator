@@ -29,8 +29,6 @@ jobs:
       env:
         VERSION: ${{ github.event.inputs.IMAGE_TAG }}
         IMAGE: ghcr.io/teamziax/gitops-operator/gitops-operator
-        BUNDLE_IMG: ghcr.io/teamziax/gitops-operator/gitops-operator-bundle
-        CATALOG_IMG: ghcr.io/teamziax/gitops-operator/gitops-operator-catalog
       run: |
         echo $VERSION
         make docker-build docker-push
