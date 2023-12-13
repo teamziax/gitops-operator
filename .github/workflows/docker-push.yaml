@@ -29,6 +29,11 @@ jobs:
       with:
         go-version: '^1.13.1'
 
+    - name: Set go bin
+      run: |
+        export GOPATH=$HOME/go
+        export GOBIN=$(go env GOPATH)/bin
+
     - name: Install operator-sdk
       run: |
         git clone https://github.com/operator-framework/operator-sdk
