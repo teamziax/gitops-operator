@@ -25,6 +25,9 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
+    - name: Install operator-sdk
+      run: brew install operator-sdk
+
     - name: Build and push docker images
       env:
         VERSION: ${{ github.event.inputs.IMAGE_TAG }}
