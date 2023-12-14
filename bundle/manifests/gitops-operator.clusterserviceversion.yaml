@@ -933,7 +933,7 @@ spec:
                 - --logtostderr=true
                 - --allow-paths=/metrics
                 - --http2-disable
-                image: registry.redhat.io/openshift4/ose-kube-rbac-proxy:v4.13
+                image: quay.io/brancz/kube-rbac-proxy:v0.15.0
                 name: kube-rbac-proxy
                 ports:
                 - containerPort: 8443
